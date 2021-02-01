@@ -1,6 +1,6 @@
 import React from 'react';
 
-import s from './yellow-banner.module.scss';
+import s from './YellowBanner.module.scss';
 
 const YellowBanner = () => {
   return (

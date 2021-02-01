@@ -1,5 +1,4 @@
 import React from 'react';
-import { Row, Col } from 'react-flexbox-grid';
 
 import logo from 'src/images/logo.svg';
 import YellowBanner from './components/YellowBanner';
@@ -7,8 +6,7 @@ import YellowBanner from './components/YellowBanner';
 const Header = () => {
   return (
     <header>
-         
-              <YellowBanner />
+      <YellowBanner />
       <img src={logo} />
     </header>
   )
