@@ -1,10 +1,36 @@
 .container {
   margin: auto;
   padding: 0;
-  max-width: 1170px;
+  max-width: 100%;
 
   .container {
     width: auto;
+  }
+
+  &--default-xs {
+    @include respond('xs') {
+      width: calc(100% - 2rem);
+    }
+  }
+
+  @include respond('xs') {
+    width: 100%;
+  }
+
+  @include respond('sm') {
+    width: 600px;
+  }
+
+  @include respond('md') {
+    width: 760px;
+  }
+
+  @include respond('lg') {
+    width: 980px;
+  }
+
+  @include respond('xl') {
+    width: 1170px;
   }
 }
 

@@ -1,6 +1,15 @@
+// variables
+@import './constants';
+
+// mixins
+@import './mixins/respond';
+
 @import './reset';
 @import './fonts';
-@import './constants';
+
+// grid
+@import './mixins/grid-mixins';
+@import './grid';
 @import './container';
 
 html, body {
