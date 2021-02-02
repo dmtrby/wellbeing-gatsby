@@ -58,6 +58,14 @@
     align-self: stretch;
 }
 
+.align-items-center {
+  align-items: center;
+}
+
+.flex-justify-center {
+  justify-content: center;
+}
+
 // Mixin to run inside of for loop - creates col/breakpoint classes * Not for developer use *
 @mixin col-factory($thisPrefix) {
   .col-#{$thisPrefix} {

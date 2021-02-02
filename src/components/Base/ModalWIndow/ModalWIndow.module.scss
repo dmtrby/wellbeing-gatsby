@@ -1,0 +1,47 @@
+@import 'styles/constants';
+@import 'styles/mixins/respond';
+
+.modal {
+  position: fixed;
+  z-index: 11;
+  width: 100%;
+  height: fit-content;
+  max-height: 90%;
+  overflow-y: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $white;
+  padding: 20px;
+  box-shadow: .125rem .125rem .25rem .25rem $gray;
+
+  @include respond('sm') {
+    width: 36.5rem;
+  }
+
+  @include respond('md') {
+    width: 48rem;
+  }
+
+  @include respond('lg') {
+    width: 54rem;
+  }
+
+  @include respond('lg') {
+    width: 70rem;
+  }
+
+  &__overlay {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba($gray, .7);
+  }
+
+  &__content {
+    padding: 2rem 3rem;
+  }
+}

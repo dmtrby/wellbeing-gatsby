@@ -15,6 +15,7 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@reach/dialog": "^0.13.0",
     "gatsby": "^2.26.1",
     "gatsby-plugin-prettier-eslint": "^1.0.4",
     "gatsby-plugin-sass": "^3.1.0",

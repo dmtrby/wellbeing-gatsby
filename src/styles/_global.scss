@@ -22,5 +22,6 @@ body {
 	color: $standard; 
 	font-size: 16px;
 	line-height: 1.56;
-	font-family: $defaultFont;
+  font-family: $defaultFont;
+  min-height: 100vh;
 }

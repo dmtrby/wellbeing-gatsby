@@ -8,10 +8,14 @@ const Header = () => {
   return (
     <header className={s.header}>
       <div className="container">
-        <div className={s.header__logo}>
-          <img src={logo} alt="WellBeing logotype" />
+        <div className="row align-items-center">
+          <div className={s.header__logo}>
+            <img src={logo} alt="WellBeing logotype" />
+          </div>
+          <div>
+            <span className={s.header__title}>Surveys</span>
+          </div>
         </div>
-          <span className={s.header__title}>Surveys</span>
       </div>
     </header>
   );
