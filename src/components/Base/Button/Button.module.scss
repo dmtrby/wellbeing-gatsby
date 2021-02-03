@@ -1,20 +1,27 @@
 @import 'styles/constants';
 
 .btn {
-  border-radius: 1.55rem;
   font-size: .875rem;
-  padding: 1rem 2.5rem;
   border: none;
   color: $white;
-  background-color: $orange;
   line-height: 1.25rem;
-  min-width: 9.5rem;
   cursor: pointer;
   transition: all $transition-duration;
   font-family: inherit;
 
-  &:hover {
-    background-color: $teal;
+  &__primary {
+    min-width: 9.5rem;
+    padding: 1rem 2.5rem;
+    border-radius: 1.55rem;
+    background-color: $orange;
+
+    &:hover, &:focus {
+      background-color: $teal;
+    }
+  }
+
+  &__text {
+    background: none;
   }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import logo from 'src/images/logo.svg';
+import Image from 'components/Base/Image';
 
 import s from './Header.module.scss';
 
@@ -10,7 +10,7 @@ const Header = () => {
       <div className="container">
         <div className="row align-items-center">
           <div className={s.header__logo}>
-            <img src={logo} alt="WellBeing logotype" />
+            <Image src="logo.svg" alt="WellBeing logotype" />
           </div>
           <div>
             <span className={s.header__title}>Surveys</span>

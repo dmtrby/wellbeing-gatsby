@@ -8,9 +8,7 @@
   height: fit-content;
   max-height: 90%;
   overflow-y: auto;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  // transform: translate(-50%, -50%);
   background-color: $white;
   padding: 20px;
   box-shadow: .125rem .125rem .25rem .25rem $gray;
@@ -27,8 +25,8 @@
     width: 54rem;
   }
 
-  @include respond('lg') {
-    width: 70rem;
+  @include respond('xl') {
+    width: 50rem;
   }
 
   &__overlay {

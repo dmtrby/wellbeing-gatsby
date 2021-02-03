@@ -1,0 +1,16 @@
+@import 'styles/constants';
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+  fill: $black;
+
+  &__teal {
+    fill: $teal;
+  }
+
+  &__big {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
