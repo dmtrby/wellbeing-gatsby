@@ -7,6 +7,7 @@ import ModalWindow from 'components/Base/ModalWindow';
 import { useModal } from 'src/hooks';
 
 import s from './Layout.module.scss';
+import QuestionsForm from 'components/QuestionsForm';
 
 const ModalSuccessContent = () => {
   return (
@@ -32,6 +33,44 @@ const ModalSuccessContent = () => {
 const Layout = ({ children }) => {
   const [modalStatus, openModal, closeModal] = useModal(false);
 
+  const questions = [
+    {
+      question: "Overall, how satisfied are you with your life nowadays?",
+      points: [
+        {
+          value: 0,
+        },
+        {
+          value: 1,
+        },
+        {
+          value: 2,
+        },
+        {
+          value: 3,
+        },
+        {
+          value: 4,
+        },
+        {
+          value: 5,
+        },
+        {
+          value: 6,
+        },
+        {
+          value: 7,
+        },
+        {
+          value: 8,
+        },
+        {
+          value: 9,
+        },
+      ]
+    }
+  ]
+
   return (
     <>
       <Header />
@@ -45,6 +84,10 @@ const Layout = ({ children }) => {
             <ModalWindow isOpen={modalStatus} hideModal={closeModal}>
               <ModalSuccessContent />
             </ModalWindow>
+            <div className="margin-top-5">
+              <QuestionsForm questions={questions} />
+            </div>
+
           </div>
         </div>
       </main>
