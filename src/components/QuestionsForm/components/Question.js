@@ -1,17 +1,46 @@
-import React from 'react';
+import React, { memo, useMemo, useContext } from 'react';
 
 import RadioGroup from 'components/RadioGroup';
+import QuestionLegend from 'components/QuestionLegend';
+import { viewportContext } from 'components/ViewportProvider/ViewportProvider';
+import { breakpoints } from 'src/constants';
 
-const Question = ({ question, points }) => {
-  return <>
-    <div className="margin-bottom-3 colour-black">{question}</div>
-    <div className="margin-bottom-3">
-      <RadioGroup points={points}></RadioGroup>
+const createPointsArray = (points) => {
+  const array = [];
+  array.push(points[0].legend);
+  array.push(points[Math.floor(points.length / 2)].legend);
+  array.push(points[points.length - 1].legend);
+  return array;
+}
+
+const Question = ({ question }) => {
+  const { question: questionTitle, points, pointsLegend, name } = question;
+  const { width } = useContext(viewportContext);
+
+  const radioLegends = useMemo(() => width > breakpoints.md && !pointsLegend ? true : false, [width, pointsLegend]);
+  let legendArray = [];
+  if (!radioLegends) {
+    if (pointsLegend) {
+      legendArray = pointsLegend;
+    } else {
+      legendArray = createPointsArray(points)
+    }
+  }
+
+
+  return (
+    <div className="margin-bottom-5">
+      <div className="margin-bottom-3 colour-black">{questionTitle}</div>
+      <div>
+        <RadioGroup name={name} points={points} radioLegends={radioLegends}></RadioGroup>
+      </div>
+      {legendArray && <div className="display-flex flex-justify-between margin-top-2">{legendArray.map((legend, index) => {
+        return <QuestionLegend key={index}>{legend}</QuestionLegend>
+      })}</div>}
     </div>
-
-  </>
+  )
 
 
 }
 
-export default Question;
+export default memo(Question);

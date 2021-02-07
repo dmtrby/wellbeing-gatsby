@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import Image from 'components/Base/Image';
 
@@ -21,4 +21,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

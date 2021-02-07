@@ -29,6 +29,11 @@ body {
   min-height: 100vh;
 }
 
+h1 {
+  font-size: 2.125rem;
+  color: $gray;
+}
+
 h2 {
   font-size: 2.125rem;
   color: $gray;
@@ -37,4 +42,21 @@ h2 {
 h3 {
   font-size: 1.25rem;
   color: $gray;
+}
+
+
+// styles for the overlay spinner
+
+._loading_overlay_content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
+._loading_overlay_overlay {
+  background: rgba($standart, .25) !important;
+}
+
+._loading_overlay_spinner svg circle {
+  stroke: $teal !important;
 }

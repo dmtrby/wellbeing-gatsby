@@ -1,0 +1,10 @@
+@import 'styles/constants';
+
+.link {
+  color: $teal;
+  text-decoration: none;
+
+  &:hover, &:focus {
+    text-decoration: underline;
+  }
+}

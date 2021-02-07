@@ -4,6 +4,10 @@
   text-align: center;
 }
 
+.text-bold {
+  font-weight: bold;
+}
+
 .small {
   font-size: 14px;
 }
@@ -28,10 +32,58 @@
   margin-bottom: 4.5rem;
 }
 
+.margin-top-2 {
+  margin-top: 1rem;
+}
+
+.margin-top-3 {
+  margin-top: 1.5rem;
+}
+
+.margin-top-4 {
+  margin-top: 2rem;
+}
+
 .margin-top-5 {
   margin-top: 2.5rem;
 }
 
+.margin-left-2 {
+  margin-left: 1rem;
+}
+
 .colour-black {
   color: $black;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.padding-top-5 {
+  padding-top: 2.5rem;
+}
+
+.padding-bottom-5 {
+  padding-bottom: 2.5rem;
+}
+
+.flex-align-center {
+  align-items: center;
+}
+
+.flex-justify-center {
+  justify-content: center;
+}
+
+.flex-justify-between {
+  justify-content: space-between;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.width-100-perc {
+  width: 100%;
 }

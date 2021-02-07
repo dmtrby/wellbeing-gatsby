@@ -1,44 +1,44 @@
-import React, { useState } from 'react';
+import React, { memo } from 'react';
 import clsx from 'clsx';
-import { v4 as uuidv4 } from 'uuid';
+import { useFormikContext, Field } from 'formik';
+
+import QuestionLegend from 'components/QuestionLegend';
 
 import s from './RadioGroup.module.scss';
 
-const RadioButton = ({ name, children, checked, value, onChange }) => {
-  console.log(checked);
+const RadioButton = ({ name, children, checked, value }) => {
   return (
-    <label htmlFor={`${name}-${value}-id`} className={clsx(s.radiogroup__label, checked && s.radiogroup__label_active)}>
-      <input type="radio" id={`${name}-${value}-id`} name={name} checked={checked} value={value} onChange={onChange} />
+    <label htmlFor={`${name}-${value}-id`} className={clsx(s.radiogroup_button__label, checked && s.radiogroup_button__label_active)}>
+      <Field type="radio" id={`${name}-${value}-id`} name={name} checked={checked} value={value}/>
       {children}
     </label>
   )
 }
 
-const RadioGroup = ({ points }) => {
-  console.log('tut', points);
-  const [active, setActive] = useState(null);
-
-  const handleChange = (e) => {
-    const value = e.target.value;
-    if (value !== active) {
-      setActive(+value);
-    }
-  }
-
-  const uniqueName = uuidv4();
+const RadioGroup = ({ points, radioLegends, name }) => {
+  const { values } = useFormikContext();
 
   return (
-    <div className={s.radiogroup}>
+    <div className={clsx(s.radiogroup, 'row')}>
       {points && points.map((point, index) => {
-        console.log('tut');
-        const { value } = point;
-        console.log(value);
+        const { value, legend } = point;
+
         return (
-          <RadioButton name={uniqueName} checked={value === active} value={value} onChange={handleChange} key={index}>{value}</RadioButton>
+          <div className={clsx(s.radiogroup_button, 'col', 'col-no-gutter')} key={index}>
+            {radioLegends ?
+              <div className={clsx('row', 'flex-column', s.with_legend)}>
+                <RadioButton name={name} checked={value.toString() === values[name]} value={value}>{value}</RadioButton>
+                {legend && <QuestionLegend className="margin-top-2">{legend}</QuestionLegend>}
+              </div>
+              :
+              <div className={clsx('row', 'flex-column', s.with_legend)}>
+                <RadioButton name={name} checked={value.toString() === values[name]} value={value}>{value}</RadioButton>
+              </div>}
+          </div>
         )
       })}
-    </div>
+    </div >
   )
 }
 
-export default RadioGroup;
+export default memo(RadioGroup);
