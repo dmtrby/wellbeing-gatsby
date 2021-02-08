@@ -1,6 +1,6 @@
 import React from "react";
 
-import Layout from '../components/Layout';
+import Layout from 'components/Layout';
 import Button from 'components/Base/Button';
 import ModalWindow from 'components/Base/ModalWindow';
 import { useModal } from 'src/hooks';

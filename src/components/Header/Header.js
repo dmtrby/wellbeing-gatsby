@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import clsx from 'clsx';
 
-import Image from 'components/Base/Image';
+import MyImage from 'components/Base/MyImage';
 
 import s from './Header.module.scss';
 
@@ -20,7 +20,7 @@ const Header = () => {
             )}
           >
             <div className={s.header__logo}>
-              <Image src="logo.svg" alt="WellBeing logotype" />
+              <MyImage src="/images/logo.svg" alt="WellBeing logotype" width={150} height={50} />
             </div>
             <div>
               <span className={s.header__title}>Surveys</span>

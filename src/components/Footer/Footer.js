@@ -1,9 +1,7 @@
 import React, { memo } from 'react';
 import clsx from 'clsx';
 
-import Image from 'components/Base/Image';
-
-import s from './Footer.module.scss';
+import MyImage from 'components/Base/MyImage';
 
 const Footer = () => {
   return (
@@ -12,11 +10,11 @@ const Footer = () => {
         <div className="row">
           <div className="col">
             <span>In partnership with</span>
-            <Image src="bt-logo.png" alt="BT logotype" />
+            <MyImage src="/images/bt-logo.png" alt="BT logotype" width={24} height={24} />
           </div>
           <div className="col">
             <span>Powered by</span>
-            <Image src="epam-logo.png" alt="EPAM logotype" />
+            <MyImage src="/images/epam-logo.png" alt="EPAM logotype" width={48} height={16.9} />
           </div>
         </div>
       </div>
