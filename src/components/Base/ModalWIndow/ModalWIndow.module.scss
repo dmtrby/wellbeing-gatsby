@@ -13,16 +13,12 @@
   padding: 20px;
   border-radius: .5rem;
 
-  @include respond('sm') {
-    width: 36.5rem;
-  }
-
   @include respond('md') {
-    width: 48rem;
+    width: 32rem;
   }
 
   @include respond('lg') {
-    width: 54rem;
+    width: 40rem;
   }
 
   @include respond('xl') {

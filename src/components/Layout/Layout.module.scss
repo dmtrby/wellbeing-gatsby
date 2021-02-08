@@ -1,3 +1,11 @@
+@import 'styles/constants';
+@import 'styles/mixins/respond';
+
 .wrapper {
   max-width: 50rem;
+
+  @include respond('lg') {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }

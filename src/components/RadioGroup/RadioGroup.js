@@ -26,12 +26,12 @@ const RadioGroup = ({ points, radioLegends, name }) => {
         return (
           <div className={clsx(s.radiogroup_button, 'col', 'col-no-gutter')} key={index}>
             {radioLegends ?
-              <div className={clsx('row', 'flex-column', s.with_legend)}>
+              <div className={clsx('row', 'flex-column')}>
                 <RadioButton name={name} checked={value.toString() === values[name]} value={value}>{value}</RadioButton>
                 {legend && <QuestionLegend className="margin-top-2">{legend}</QuestionLegend>}
               </div>
               :
-              <div className={clsx('row', 'flex-column', s.with_legend)}>
+              <div className={clsx('row', 'flex-column')}>
                 <RadioButton name={name} checked={value.toString() === values[name]} value={value}>{value}</RadioButton>
               </div>}
           </div>

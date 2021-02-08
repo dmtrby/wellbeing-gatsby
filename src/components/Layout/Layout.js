@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Header from 'components/Header';
+import Footer from 'components/Footer';
 
 import s from './Layout.module.scss';
 
@@ -10,11 +11,12 @@ const Layout = ({ children }) => {
       <Header />
       <main className="container">
         <div className="row flex-justify-center">
-          <div className={`${s.wrapper} col-xl-10 col-xl-offset-1 col-no-gutter`}>
+          <div className={`${s.wrapper} col-lg-10 padding-top-bottom-0 col-xs-12`}>
             {children}
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 };

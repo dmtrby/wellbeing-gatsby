@@ -26,8 +26,8 @@
       }
     }
 
-    &:not(&:last-child) {
-      .radiogroup_button__label {
+    &:not(:last-child) {
+      & .radiogroup_button__label {
         border-right: none;
       }
     }
@@ -35,10 +35,5 @@
 
   input[type='radio'] {
     margin: 0;
-  }
-
-  .with_legend {
-    flex: 1;
-    align-self: flex-start;
   }
 }

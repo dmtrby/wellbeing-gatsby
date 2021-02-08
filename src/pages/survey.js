@@ -34,10 +34,6 @@ const SurveyPage = () => {
     promise.then(() => smo()).catch(() => emo());
   }
 
- 
- 
-
-
   return (
     <ViewportProvider>
       <LoadingOverlay
