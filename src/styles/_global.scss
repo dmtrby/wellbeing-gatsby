@@ -26,7 +26,22 @@ body {
 	font-size: 16px;
 	line-height: 1.56;
   font-family: $defaultFont;
+
+}
+
+.main-wrapper {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+main {
+  flex-grow: 1;
+}
+
+header, main, footer {
+  flex-shrink: 0;
 }
 
 h1 {
@@ -50,6 +65,7 @@ h3 {
 ._loading_overlay_content {
   position: fixed;
   top: 50%;
+  transform: translateY(-50%);
 }
 
 ._loading_overlay_overlay {

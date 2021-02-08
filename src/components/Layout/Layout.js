@@ -7,7 +7,7 @@ import s from './Layout.module.scss';
 
 const Layout = ({ children }) => {
   return (
-    <>
+    <div className="main-wrapper">
       <Header />
       <main className="container">
         <div className="row flex-justify-center">
@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 

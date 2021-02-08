@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 const viewportContext = React.createContext({});
 
 const ViewportProvider = ({ children }) => {
-  const [width, setWidth] = useState(window.innerWidth);
-  const [height, setHeight] = useState(window.innerHeight);
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
   const handleWindowResize = () => {
     setWidth(window.innerWidth);
     setHeight(window.innerHeight);
@@ -12,6 +12,8 @@ const ViewportProvider = ({ children }) => {
 
   useEffect(() => {
     window.addEventListener("resize", handleWindowResize);
+    setWidth(window.innerWidth);
+    setHeight(window.innerHeight);
     return () => window.removeEventListener("resize", handleWindowResize);
   }, []);
 
