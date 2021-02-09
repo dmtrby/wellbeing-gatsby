@@ -77,3 +77,47 @@ h3 {
 ._loading_overlay_spinner svg circle {
   stroke: $teal !important;
 }
+
+
+// styles for select
+
+div.select {
+  max-height: 2.725rem;
+
+  &__control {
+    border-color: $light-gray;
+    color: $standart !important;
+    max-width: 10rem;
+    line-height: 1.5rem;
+    min-height: auto;
+
+    &:hover, &:focus, &:active {
+      border: 1px solid $light-gray;
+      box-shadow: 0 0 0 1px $light-gray;
+    }
+
+    &--is-focused {
+      border: 1px solid $light-gray;
+      box-shadow: 0 0 0 1px $light-gray;
+    }
+  }
+
+  &__value-container {
+    padding: .55rem .75rem;
+
+    & > div {
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  &__placeholder {
+    color: $standart;
+    font-size: .875rem;
+    font-family: inherit;
+  }
+
+  &__menu {
+    max-width: 10rem; 
+  }
+}

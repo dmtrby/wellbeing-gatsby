@@ -1,0 +1,7 @@
+@import '../../../styles/constants';
+
+.select {
+  &__control {
+    border-color: $light-gray
+  }
+}

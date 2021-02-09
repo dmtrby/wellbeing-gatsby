@@ -7,7 +7,7 @@ import s from './Footer.module.scss';
 
 const Footer = () => {
   return (
-    <footer className="container padding-top-4 padding-bottom-6">
+    <footer className="container padding-top-10 padding-bottom-10">
       <div className="row flex-justify-center">
         <div className={clsx(s.wrapper, 'col-lg-10', 'padding-top-bottom-0', 'col-xs-12')}>
           <div className="display-flex">

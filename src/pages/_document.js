@@ -13,7 +13,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+          <link rel="shortcut icon" type="image/jpg" href="/favicon.jpg" />
         </Head>
         <Head />
         <body>

@@ -25,6 +25,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-loading-overlay": "^1.0.1",
+    "react-select": "^4.1.0",
     "react-spinners": "^0.10.4",
     "sass": "^1.32.5",
     "sass-resources-loader": "^2.1.1"

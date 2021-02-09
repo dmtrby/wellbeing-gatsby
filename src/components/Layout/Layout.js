@@ -1,24 +1,30 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import ViewportProvider from 'src/contextProviders/ViewportProvider';
+import LoadingOverlayProvider from 'src/contextProviders/LoadingOverlayProvider';
 
 import s from './Layout.module.scss';
 
 const Layout = ({ children }) => {
   return (
-    <div className="main-wrapper">
-      <Header />
-      <main className="container">
-        <div className="row flex-justify-center">
-          <div className={`${s.wrapper} col-lg-10 padding-top-bottom-0 col-xs-12`}>
-            {children}
-          </div>
+    <ViewportProvider>
+      <LoadingOverlayProvider>
+        <div className="main-wrapper">
+          <Header />
+          <main className="container">
+            <div className="row flex-justify-center">
+              <div className={`${s.wrapper} col-lg-10 padding-top-bottom-0 col-xs-12`}>
+                {children}
+              </div>
+            </div>
+          </main>
+          <Footer />
         </div>
-      </main>
-      <Footer />
-    </div>
+      </LoadingOverlayProvider>
+    </ViewportProvider>
   );
 };
 
-export default Layout;
+export default memo(Layout);

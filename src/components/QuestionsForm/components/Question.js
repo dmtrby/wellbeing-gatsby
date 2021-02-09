@@ -2,7 +2,7 @@ import React, { memo, useMemo, useContext } from 'react';
 
 import RadioGroup from 'components/RadioGroup';
 import QuestionLegend from 'components/QuestionLegend';
-import { viewportContext } from 'components/ViewportProvider/ViewportProvider';
+import { viewportContext } from 'src/contextProviders/ViewportProvider/ViewportProvider';
 import { breakpoints } from 'src/constants';
 
 const createPointsArray = (points) => {

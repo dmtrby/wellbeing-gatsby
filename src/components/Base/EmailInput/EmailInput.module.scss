@@ -1,0 +1,14 @@
+@import '../../../styles/constants';
+
+.input {
+  max-width: 24.125rem;
+  border: 1px solid $light-gray;
+  color: $standart !important;
+  padding: .55rem .75rem;
+  font: inherit;
+  border-radius: .25rem;
+
+  &:hover, &:active, &:focus {
+    box-shadow: 0 0 0 1px $light-gray;
+  }
+}

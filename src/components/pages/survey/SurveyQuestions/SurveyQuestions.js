@@ -15,7 +15,7 @@ const SurveyQuestions = () => {
 
   const [{ data, loading, error }, sendData] = useAxios(
     {
-      url: 'https://reqres.in/api/register?delay=2',
+      url: 'https://reqres.in/api/register?delay=1',
       method: 'POST'
     },
     { manual: true }
@@ -23,7 +23,7 @@ const SurveyQuestions = () => {
 
   const [{ data: getData, loading: getLoading, error: getError }, loadData] = useAxios(
     {
-      url: 'https://reqres.in/api/register?delay=2',
+      url: 'https://reqres.in/api/register?delay=1',
       method: 'GET'
     },
     { manual: true }
