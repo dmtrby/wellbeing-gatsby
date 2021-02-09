@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { Formik, Field } from 'formik';
+import * as Yup from 'yup';
 
 import Button from 'components/Base/Button';
 import Question from './components/Question';
@@ -8,8 +9,25 @@ import { findKeysInSurveyBlocks } from 'src/utils';
 import MySelect from './components/MySelect';
 import EmailInput from 'components/Base/EmailInput';
 
+const validateEmail = (value) => {
+  let error;
+  if (!value) {
+    error = 'Required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+    error = 'Invalid email address';
+  }
+  return error;
+}
+
 const QuestionsForm = ({ surveyBlocks, onSubmit }) => {
-  const initialValues = useMemo(() => findKeysInSurveyBlocks(surveyBlocks), [surveyBlocks]);
+  const questionValues = useMemo(() => findKeysInSurveyBlocks(surveyBlocks), [surveyBlocks]);
+  const initialValues = useMemo(() => ({ ...questionValues, email: '', company: '' }), [questionValues]);
+
+  const mapRules = (map) => Object.keys(map).reduce((newMap, key) => ({ ...newMap, [key]: Yup.mixed().required() }), {});
+
+  const schema = Yup.lazy(map => Yup.object(
+    mapRules(map, Yup.object({}))
+  ));
 
   const selectOptions = [
     { value: 'BT', label: 'BT' },
@@ -22,7 +40,10 @@ const QuestionsForm = ({ surveyBlocks, onSubmit }) => {
       <h3 className="margin-bottom-3">Questions</h3>
       <Formik
         initialValues={initialValues}
+        validationSchema={schema}
         onSubmit={(values) => {
+          const valuesToSubmit = { ...values, company: values.company.value };
+          console.log(valuesToSubmit);
           onSubmit();
         }}
       >
@@ -46,16 +67,23 @@ const QuestionsForm = ({ surveyBlocks, onSubmit }) => {
                 </div>
               );
             })}
+            <div>{JSON.stringify(props.errors)}</div>
             <div className="margin-top-2 margin-bottom-2">
               <p className="colour-black margin-bottom-3">Your details</p>
               <div className="row flex-justify-between margin-bottom-9">
                 <div className="col-xs-12 col-md-6 col-no-gutter">
-                  <EmailInput name="email" />
+                  <EmailInput name="email" validate={validateEmail} />
                 </div>
                 <div className="col-xs-12 col-md-5 col-no-gutter margin-top-md-0 margin-top-4">
                   <div className="display-flex flex-column">
-                    <label htmlFor="select" className="small margin-bottom-1">Company</label>
-                    <MySelect options={selectOptions} defaultInputValue={selectOptions[0].value} />
+                    <label htmlFor="select" className="small margin-bottom-1">Company *</label>
+                    <Field
+                      as={MySelect}
+                      options={selectOptions}
+                      onChange={(e) => props.setFieldValue('company', e)}
+                      onBlur={props.setFieldTouched}
+                      value={props.values.company}
+                    />
                   </div>
                 </div>
               </div>

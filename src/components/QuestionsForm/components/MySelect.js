@@ -1,9 +1,16 @@
 import React from 'react';
 import Select from 'react-select';
 
-const MySelect = ({ options, defaultInputValue}) => {
+const MySelect = ({ options, onBlur, onChange, value }) => {
   return (
-    <Select options={options} defaultInputValue={defaultInputValue} className="select" classNamePrefix="select" />
+    <Select
+      options={options}
+      onBlur={onBlur}
+      onChange={onChange}
+      value={value}
+      className="select"
+      classNamePrefix="select"
+    />
   )
 }
 
