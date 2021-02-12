@@ -14,7 +14,7 @@ const validateEmail = (value) => {
   if (!value) {
     error = 'Required';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-    error = 'Invalid email address';
+    error = 'Please enter a valid email';
   }
   return error;
 }
@@ -44,7 +44,7 @@ const QuestionsForm = ({ surveyBlocks, onSubmit }) => {
         onSubmit={(values) => {
           const valuesToSubmit = { ...values, company: values.company.value };
           console.log(valuesToSubmit);
-          onSubmit();
+          onSubmit(values.email);
         }}
       >
         {(props) => (
@@ -60,19 +60,18 @@ const QuestionsForm = ({ surveyBlocks, onSubmit }) => {
                       </div>
                     ) : null}
                     {questions.map((question, questionIndex) => {
-                      return <Question question={question} key={questionIndex} />;
+                      return <Question question={question} key={questionIndex}/>;
                     })}
                   </div>
                   {surveyBlockIndex !== surveyBlocks.length - 1 && <HR />}
                 </div>
               );
             })}
-            <div>{JSON.stringify(props.errors)}</div>
             <div className="margin-top-2 margin-bottom-2">
               <p className="colour-black margin-bottom-3">Your details</p>
               <div className="row flex-justify-between margin-bottom-9">
                 <div className="col-xs-12 col-md-6 col-no-gutter">
-                  <EmailInput name="email" validate={validateEmail} />
+                  <EmailInput name="email" validate={validateEmail} isInvalid={props.errors.email && props.touched.email} error={props.errors.email} />
                 </div>
                 <div className="col-xs-12 col-md-5 col-no-gutter margin-top-md-0 margin-top-4">
                   <div className="display-flex flex-column">
@@ -89,9 +88,10 @@ const QuestionsForm = ({ surveyBlocks, onSubmit }) => {
               </div>
             </div>
 
-            <Button type="submit" variant="primary">
+            <Button type="submit" variant="primary" disabled={props.isSubmitting}>
               Submit
             </Button>
+            {!props.isValid && <div className="xsmall colour-red margin-top-1"><span>Please make sure you have filled all inputs</span></div>}
           </form>
         )}
       </Formik>

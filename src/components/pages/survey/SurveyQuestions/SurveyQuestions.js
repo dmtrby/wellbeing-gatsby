@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import useAxios from 'axios-hooks';
+import { useRouter } from 'next/router';
+import { useCookies } from 'react-cookie';
 
 import SuccessModalComponent from 'components/SuccessModalComponent';
 import ErrorModalComponent from 'components/ErrorModalComponent';
@@ -8,8 +10,12 @@ import QuestionsForm from 'components/QuestionsForm';
 import { surveyData } from 'src/mockedData';
 import { useModal } from 'src/hooks';
 import { LoadingOverlayContext } from 'src/contextProviders/LoadingOverlayProvider/LoadingOverlayProvider';
+import { COOKIE_NAMES } from 'src/constants';
 
 const SurveyQuestions = () => {
+  const router = useRouter();
+  const [ cookie, setCookie ] = useCookies(COOKIE_NAMES.EMAIL);
+  const { query: { surveyId }, push} = router;
   const { setLoading } = useContext(LoadingOverlayContext);
   const { title, surveyBlocks } = surveyData;
 
@@ -23,7 +29,7 @@ const SurveyQuestions = () => {
 
   const [{ data: getData, loading: getLoading, error: getError }, loadData] = useAxios(
     {
-      url: 'https://reqres.in/api/register?delay=1',
+      url: 'https://reqres.in/api/register',
       method: 'GET'
     },
     { manual: true }
@@ -39,18 +45,19 @@ const SurveyQuestions = () => {
     }).catch(() => {
       setLoading(false);
     });
-  }, [])
+  }, [surveyId])
 
 
   const [sms, smo, smc] = useModal(!!data);
   const [ems, emo, emc] = useModal(!!error);
 
-  const handleSubmit = () => {
+  const handleSubmit = (email) => {
     setLoading(true);
     ems && emc();
     const promise = sendData();
     promise.then(() => {
       setLoading(false);
+      setCookie(COOKIE_NAMES.EMAIL, email);
       smo();
     }).catch(() => {
       setLoading(false);

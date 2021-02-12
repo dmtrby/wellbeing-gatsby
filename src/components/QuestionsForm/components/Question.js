@@ -3,7 +3,7 @@ import React, { memo, useMemo, useContext } from 'react';
 import RadioGroup from 'components/RadioGroup';
 import QuestionLegend from 'components/QuestionLegend';
 import { viewportContext } from 'src/contextProviders/ViewportProvider/ViewportProvider';
-import { breakpoints } from 'src/constants';
+import { BREAKPOINTS } from 'src/constants';
 
 const createPointsArray = (points) => {
   const array = [];
@@ -17,7 +17,7 @@ const Question = ({ question }) => {
   const { question: questionTitle, points, pointsLegend, name } = question;
   const { width } = useContext(viewportContext);
 
-  const radioLegends = useMemo(() => width > breakpoints.md && !pointsLegend ? true : false, [width, pointsLegend]);
+  const radioLegends = useMemo(() => width > BREAKPOINTS.md && !pointsLegend ? true : false, [width, pointsLegend]);
   let legendArray = [];
   if (!radioLegends) {
     if (pointsLegend) {

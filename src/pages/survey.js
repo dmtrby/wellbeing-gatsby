@@ -23,4 +23,15 @@ const SurveyPage = () => {
   );
 };
 
+SurveyPage.getInitialProps = ({ res, query: { surveyId } }) => {
+  if (!surveyId) {
+    res.writeHead(301, {
+      Location: '/404'
+    });
+    res.end();
+  }
+
+  return {};
+}
+
 export default SurveyPage;

@@ -401,3 +401,129 @@ export const surveyData = {
     },
   ]
 };
+
+export const reportData = {
+  "title": "Workplace wellbeing snapshot survey",
+  "answers": [
+    {
+      "questionText": "Overall, how satisfied are you with your life nowadays?",
+      "questionId": "6025385ac594ac135ad220af",
+      "minRating": 0,
+      "maxRating": 10,
+      "resultsPerDay": {
+        "2021-02-11": 5
+      }
+    },
+    {
+      "questionText": "Overall, to what extent do you feel that the things you do in your life are worthwhile?",
+      "questionId": "6025385ac594ac135ad220b0",
+      "minRating": 0,
+      "maxRating": 10,
+      "resultsPerDay": {
+        "2021-02-11": 6
+      }
+    },
+    {
+      "questionText": "Overall, how happy did you feel yesterday?",
+      "questionId": "6025385ac594ac135ad220b1",
+      "minRating": 0,
+      "maxRating": 10,
+      "resultsPerDay": {
+        "2021-02-11": 3
+      }
+    },
+    {
+      "questionText": "Overall, how anxious did you feel yesterday?",
+      "questionId": "6025385ac594ac135ad220b2",
+      "minRating": 0,
+      "maxRating": 10,
+      "resultsPerDay": {
+        "2021-02-11": 8
+      }
+    },
+    {
+      "questionText": "How dissatisfied or satisfied are you with your present job overall?",
+      "questionId": "6025385ac594ac135ad220b3",
+      "minRating": 1,
+      "maxRating": 7,
+      "resultsPerDay": {
+        "2021-02-11": 6
+      }
+    },
+    {
+      "questionText": "I would recommend my organisation as a great place to work",
+      "questionId": "6025385ac594ac135ad220b4",
+      "minRating": 1,
+      "maxRating": 5,
+      "resultsPerDay": {
+        "2021-02-11": 4
+      }
+    },
+    {
+      "questionText": "How would you rate your overall physical health now?",
+      "questionId": "6025385ac594ac135ad220b5",
+      "minRating": 1,
+      "maxRating": 5,
+      "resultsPerDay": {
+        "2021-02-11": 3
+      }
+    },
+    {
+      "questionText": "How would you rate your overall mental health now?",
+      "questionId": "6025385ac594ac135ad220b6",
+      "minRating": 1,
+      "maxRating": 5,
+      "resultsPerDay": {
+        "2021-02-11": 5
+      }
+    },
+    {
+      "questionText": "I feel safe from threats and physical hazards in my work environment",
+      "questionId": "6025385ac594ac135ad220b7",
+      "minRating": 1,
+      "maxRating": 5,
+      "resultsPerDay": {
+        "2021-02-11": 4
+      }
+    },
+    {
+      "questionText": "I am satisfied with my physical working environment",
+      "questionId": "6025385ac594ac135ad220b8",
+      "minRating": 1,
+      "maxRating": 5,
+      "resultsPerDay": {
+        "2021-02-11": 2
+      }
+    },
+    {
+      "questionText": "Your manager helps and supports you",
+      "questionId": "6025385ac594ac135ad220b9",
+      "minRating": 1,
+      "maxRating": 5,
+      "resultsPerDay": {
+        "2021-02-11": 3
+      }
+    },
+    {
+      "questionText": "Your colleagues help and support you",
+      "questionId": "6025385ac594ac135ad220ba",
+      "minRating": 1,
+      "maxRating": 5,
+      "resultsPerDay": {
+        "2021-02-11": 5
+      }
+    },
+    {
+      "questionText": "Your job gives you the feeling of work well done",
+      "questionId": "6025385ac594ac135ad220bb",
+      "minRating": 1,
+      "maxRating": 5,
+      "resultsPerDay": {
+        "2021-02-11": 2
+      }
+    }
+  ],
+  "surveyDates": [
+    "2021-02-11"
+  ]
+};

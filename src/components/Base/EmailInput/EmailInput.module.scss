@@ -11,4 +11,12 @@
   &:hover, &:active, &:focus {
     box-shadow: 0 0 0 1px $light-gray;
   }
+
+  &__invalid {
+    border: 1px solid $red;
+
+    &:hover, &:active, &:focus {
+      box-shadow: 0 0 0 1px $red;
+    }
+  }
 }
