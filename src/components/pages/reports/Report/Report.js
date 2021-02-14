@@ -37,7 +37,7 @@ const Report = () => {
   const reportDate = surveyDates[0];
 
   return (
-    getData ? <>
+    getData ? <div className="width-100-perc">
       <div className="margin-top-3">
         <h1>{title}</h1>
       </div>
@@ -65,7 +65,7 @@ const Report = () => {
          })}
        </div>
       </div>
-    </> : <div></div>
+    </div> : <div></div>
   )
 
 }

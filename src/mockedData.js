@@ -1,4 +1,5 @@
 export const surveyData = {
+  "successfull": true,
   "title": "Workplace wellbeing snapshot survey",
   "surveyBlocks": [
     {

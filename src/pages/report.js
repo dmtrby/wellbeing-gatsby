@@ -6,16 +6,16 @@ import Layout from 'components/Layout';
 import Link from 'components/Base/Link';
 import IconComponent from 'components/Base/IconComponent';
 
-const DynamicSurvey = dynamic(() => import('components/pages/survey/SurveyQuestions'), {
+const DynamicReport = dynamic(() => import('components/pages/reports/Report'), {
   ssr: false,
 });
 
-const SurveyPage = () => {
+const ReportsPage = () => {
   return (
     <>
       <Head>
-        <title>Survey page | Wellbeing surveys</title>
-        <meta name="description" content="Survey content page" />
+        <title>Report page | Wellbeing surveys</title>
+        <meta name="description" content="View your survey report" />
       </Head>
       <Layout>
         <div className="margin-top-3 small">
@@ -25,14 +25,14 @@ const SurveyPage = () => {
           </Link>
         </div>
         <div className="height-100-perc display-flex align-items-center flex-justify-center">
-          <DynamicSurvey />
+          <DynamicReport />
         </div>
       </Layout>
     </>
   );
 };
 
-SurveyPage.getInitialProps = ({ res, query: { surveyId } }) => {
+ReportsPage.getInitialProps = ({ res, query: { surveyId } }) => {
   if (!surveyId) {
     res.writeHead(301, {
       Location: '/404'
@@ -43,4 +43,4 @@ SurveyPage.getInitialProps = ({ res, query: { surveyId } }) => {
   return {};
 }
 
-export default SurveyPage;
+export default ReportsPage;

@@ -1,9 +1,12 @@
 import React from 'react';
+import Link from 'next/link';
+import clsx from 'clsx';
 
 import IconComponent from 'components/Base/IconComponent';
-import Button from 'components/Base/Button';
 
-const SuccessModalComponent = ({ ctaClick }) => {
+import buttonStyles from 'components/Base/Button/Button.module.scss';
+
+const SuccessModalComponent = ({ surveyId }) => {
   return (
     <div className="text-center">
       <div className="margin-bottom-5">
@@ -17,9 +20,9 @@ const SuccessModalComponent = ({ ctaClick }) => {
         </span>
       </div>
 
-      <Button type="button" variant="primary" onClick={ctaClick}>
-        See results
-      </Button>
+      <Link href={`/report?surveyId=${surveyId}`}>
+        <a className={clsx(buttonStyles.btn, buttonStyles.btn__primary)}>See results</a>
+      </Link>
     </div>
   )
 }

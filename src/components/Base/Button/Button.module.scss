@@ -10,6 +10,7 @@
   transition: all $transition-duration;
   font-family: inherit;
   width: 100%;
+  text-decoration: none;
 
   @include respond('md') {
     width: auto;

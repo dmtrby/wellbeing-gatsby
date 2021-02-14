@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useCookies } from 'react-cookie';
 
 import SuccessModalComponent from 'components/SuccessModalComponent';
-import ErrorModalComponent from 'components/ErrorModalComponent';
+import ErrorComponent from 'components/ErrorComponent';
 import ModalWindow from 'components/Base/ModalWindow';
 import QuestionsForm from 'components/QuestionsForm';
 import { surveyData } from 'src/mockedData';
@@ -14,22 +14,23 @@ import { COOKIE_NAMES } from 'src/constants';
 
 const SurveyQuestions = () => {
   const router = useRouter();
-  const [ cookie, setCookie ] = useCookies(COOKIE_NAMES.EMAIL);
-  const { query: { surveyId }, push} = router;
+  const [cookies, setCookie] = useCookies(COOKIE_NAMES.EMAIL);
+  const emailCookie = cookies[COOKIE_NAMES.EMAIL];
+  const { query: { surveyId }, push } = router;
   const { setLoading } = useContext(LoadingOverlayContext);
-  const { title, surveyBlocks } = surveyData;
+  const { title, surveyBlocks, successfull } = surveyData;
 
   const [{ data, loading, error }, sendData] = useAxios(
     {
-      url: 'https://reqres.in/api/register?delay=1',
-      method: 'POST'
+      url: 'https://reqres.in/api/users?page=2',
+      method: 'GET'
     },
     { manual: true }
   );
 
   const [{ data: getData, loading: getLoading, error: getError }, loadData] = useAxios(
     {
-      url: 'https://reqres.in/api/register',
+      url: 'https://reqres.in/api/register?delay=1',
       method: 'GET'
     },
     { manual: true }
@@ -65,21 +66,46 @@ const SurveyQuestions = () => {
     });
   }
 
+
+  if (getData && successfull) {
+    return (
+      <div>
+        <div className="margin-top-3">
+          <h1>{title}</h1>
+        </div>
+        <div className="margin-top-4">
+          <QuestionsForm surveyBlocks={surveyBlocks} onSubmit={handleSubmit} />
+        </div>
+        <ModalWindow isOpen={sms} hideModal={smc}>
+          <SuccessModalComponent surveyId={surveyId} />
+        </ModalWindow>
+        <ModalWindow isOpen={ems} hideModal={emc}>
+          <ErrorComponent
+            ctaClick={handleSubmit}
+            ctaTitle="Re-submit"
+            title="Oops"
+            description="There was an error on server side."
+            todo="Please try to re-submit the survey."
+          />
+        </ModalWindow>
+      </div>
+    )
+  }
+
+
+  if (getData && !successfull) {
+    return (
+      <ErrorComponent
+        title="Oops"
+        description="There was an error on server side."
+        todo="Please try to reload the page."
+      />
+    )
+
+  }
+
   return (
-    getData ? <>
-      <div className="margin-top-3">
-        <h1>{title}</h1>
-      </div>
-      <div className="margin-top-4">
-        <QuestionsForm surveyBlocks={surveyBlocks} onSubmit={handleSubmit} />
-      </div>
-      <ModalWindow isOpen={sms} hideModal={smc}>
-        <SuccessModalComponent ctaClick={() => console.log('success click')} />
-      </ModalWindow>
-      <ModalWindow isOpen={ems} hideModal={emc}>
-        <ErrorModalComponent ctaClick={handleSubmit} />
-      </ModalWindow>
-    </> : <div></div>
+    <div></div>
   )
 }
 

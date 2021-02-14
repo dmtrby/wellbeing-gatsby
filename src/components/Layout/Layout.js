@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import clsx from 'clsx';
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';
@@ -13,8 +14,8 @@ const Layout = ({ children }) => {
       <LoadingOverlayProvider>
         <div className="main-wrapper">
           <Header />
-          <main className="container">
-            <div className="row flex-justify-center">
+          <main className="container align-stretch display-flex">
+            <div className={clsx('row', 'flex-justify-center')}>
               <div className={`${s.wrapper} col-lg-10 padding-top-bottom-0 col-xs-12`}>
                 {children}
               </div>
