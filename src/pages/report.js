@@ -18,7 +18,7 @@ const ReportsPage = () => {
         <meta name="description" content="View your survey report" />
       </Head>
       <Layout>
-        <div className="margin-top-3 small">
+        <div className="small">
           <Link href="#" className="display-flex flex-align-center text-bold">
             <IconComponent xlinkHref="left-arrow" colour="teal" />
             <span className="margin-left-2">What Works Wellbeing</span>

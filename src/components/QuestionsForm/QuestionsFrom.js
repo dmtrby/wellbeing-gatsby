@@ -76,9 +76,9 @@ const QuestionsForm = ({ surveyBlocks, onSubmit, surveyId }) => {
                 </div>
               );
             })}
-            <div className="margin-top-2 margin-bottom-2">
+            <div className="margin-top-2 margin-bottom-9">
               <p className="colour-black margin-bottom-3">Your details</p>
-              <div className="row flex-justify-between margin-bottom-9">
+              <div className="row flex-justify-between">
                 <div className="col-xs-12 col-md-6 col-no-gutter">
                   <EmailInput name="email" validate={validateEmail} isInvalid={props.errors.email && props.touched.email} error={props.errors.email} />
                 </div>
@@ -97,7 +97,7 @@ const QuestionsForm = ({ surveyBlocks, onSubmit, surveyId }) => {
               </div>
             </div>
 
-            <Button type="submit" variant="primary" disabled={props.isSubmitting}>
+            <Button type="submit" variant="primary">
               Submit
             </Button>
             {!props.isValid && <div className="xsmall colour-red margin-top-1"><span>Please make sure you have filled all inputs</span></div>}

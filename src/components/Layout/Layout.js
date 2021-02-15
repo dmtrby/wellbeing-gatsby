@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
       <LoadingOverlayProvider>
         <div className="main-wrapper">
           <Header />
-          <main className="container align-stretch display-flex">
+          <main className="container align-stretch display-flex margin-top-3">
             <div className={clsx('row', 'flex-justify-center')}>
               <div className={`${s.wrapper} col-lg-10 padding-top-bottom-0 col-xs-12`}>
                 {children}

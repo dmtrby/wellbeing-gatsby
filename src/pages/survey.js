@@ -18,13 +18,13 @@ const SurveyPage = () => {
         <meta name="description" content="Survey content page" />
       </Head>
       <Layout>
-        <div className="margin-top-3 small">
+        <div className="small">
           <Link href="#" className="display-flex flex-align-center text-bold">
             <IconComponent xlinkHref="left-arrow" colour="teal" />
             <span className="margin-left-2">What Works Wellbeing</span>
           </Link>
         </div>
-        <div className="height-100-perc display-flex align-items-center flex-justify-center">
+        <div className="display-flex align-items-center flex-justify-center">
           <DynamicSurvey />
         </div>
       </Layout>

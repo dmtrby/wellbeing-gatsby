@@ -1,7 +1,7 @@
 export const surveyData = {
   successfull: true,
-  title: 'Workplace wellbeing snapshot survey',
   data: {
+    title: 'Workplace wellbeing snapshot survey',
     surveyBlocks: [
       {
         blockPosition: 1,

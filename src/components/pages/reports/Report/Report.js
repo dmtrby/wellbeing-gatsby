@@ -12,7 +12,7 @@ import s from './Report.module.scss';
 const Report = () => {
   const [cookies, setCookie] = useCookies(COOKIE_NAMES.EMAIL);
   const { setLoading } = useContext(LoadingOverlayContext);
-  const { title, answers, surveyDates } = reportData;
+  const { data: { title, answers, surveyDates } } = reportData;
   const emailCookie = cookies[COOKIE_NAMES.EMAIL];
 
   const [{ data: getData, loading: getLoading, error: getError }, loadData] = useAxios(
@@ -48,22 +48,22 @@ const Report = () => {
         <span className="small">Track your response over time by viewing your weekly reports</span>
       </div>
       <div className="margin-top-1">
-       <div>
-         <div className={clsx(s.report_row, 'row')}>
-           <div className="col-xs-8 col-md-10 col-no-gutter"></div>
-           <div className="col-xs-4 col-md-2 col-no-gutter small"><div className="display-flex flex-justify-center small">DATE</div></div>
-         </div>
-         <div className={clsx(s.report_row, 'row')}>
-           <div className="col-xs-8 col-md-10 col-no-gutter small">QUESTIONS</div>
-           <div className="col-xs-4 col-md-2 col-no-gutter"><div className="display-flex flex-justify-center small">{reportDate}</div></div>
-         </div>
-         {answers.map((answer, index) => {
-           return <div className={clsx(s.report_row, 'row')} key={index}>
-           <div className="col-xs-8 col-md-10 col-no-gutter small colour-black">{answer.questionText} ({answer.minRating}-{answer.maxRating} scale)</div>
-           <div className="col-xs-4 col-md-2 col-no-gutter small colour-black"><div className="display-flex flex-justify-center align-items-center height-100-perc">{answer.resultsPerDay[reportDate]}</div></div>
-         </div>
-         })}
-       </div>
+        <div>
+          <div className={clsx(s.report_row, 'row')}>
+            <div className="col-xs-8 col-md-10 col-no-gutter"></div>
+            <div className="col-xs-4 col-md-2 col-no-gutter small"><div className="display-flex flex-justify-center small">DATE</div></div>
+          </div>
+          <div className={clsx(s.report_row, 'row')}>
+            <div className="col-xs-8 col-md-10 col-no-gutter small">QUESTIONS</div>
+            <div className="col-xs-4 col-md-2 col-no-gutter"><div className="display-flex flex-justify-center small">{reportDate}</div></div>
+          </div>
+          {answers.map((answer, index) => {
+            return <div className={clsx(s.report_row, 'row')} key={index}>
+              <div className="col-xs-8 col-md-10 col-no-gutter small colour-black">{answer.questionText} ({answer.minRating}-{answer.maxRating} scale)</div>
+              <div className="col-xs-4 col-md-2 col-no-gutter small colour-black"><div className="display-flex flex-justify-center align-items-center height-100-perc">{answer.resultsPerDay[reportDate]}</div></div>
+            </div>
+          })}
+        </div>
       </div>
     </div> : <div></div>
   )
