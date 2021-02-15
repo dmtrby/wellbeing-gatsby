@@ -18,12 +18,14 @@ const SurveyQuestions = () => {
   const emailCookie = cookies[COOKIE_NAMES.EMAIL];
   const { query: { surveyId }, push } = router;
   const { setLoading } = useContext(LoadingOverlayContext);
-  const { title, surveyBlocks, successfull } = surveyData;
+  const { data: { title, surveyBlocks }, successfull } = surveyData;
 
   const [{ data, loading, error }, sendData] = useAxios(
     {
       url: 'https://reqres.in/api/users?page=2',
       method: 'GET'
+      // url: 'http://localhost:8102/survey?surveyId=default&userId=defaultuser'
+      // method: 'POST'
     },
     { manual: true }
   );
@@ -32,6 +34,9 @@ const SurveyQuestions = () => {
     {
       url: 'https://reqres.in/api/register?delay=1',
       method: 'GET'
+
+      // url: 'http://localhost:8102/addSurvey', // pridet succesfull true esli vse ok
+      // method: 'GET'
     },
     { manual: true }
   );
@@ -74,7 +79,7 @@ const SurveyQuestions = () => {
           <h1>{title}</h1>
         </div>
         <div className="margin-top-4">
-          <QuestionsForm surveyBlocks={surveyBlocks} onSubmit={handleSubmit} />
+          <QuestionsForm surveyBlocks={surveyBlocks} onSubmit={handleSubmit} surveyId={surveyId} />
         </div>
         <ModalWindow isOpen={sms} hideModal={smc}>
           <SuccessModalComponent surveyId={surveyId} />

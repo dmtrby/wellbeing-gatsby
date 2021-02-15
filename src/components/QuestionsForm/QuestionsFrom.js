@@ -19,7 +19,7 @@ const validateEmail = (value) => {
   return error;
 }
 
-const QuestionsForm = ({ surveyBlocks, onSubmit }) => {
+const QuestionsForm = ({ surveyBlocks, onSubmit, surveyId }) => {
   const questionValues = useMemo(() => findKeysInSurveyBlocks(surveyBlocks), [surveyBlocks]);
   const initialValues = useMemo(() => ({ ...questionValues, email: '', company: '' }), [questionValues]);
 
@@ -42,7 +42,16 @@ const QuestionsForm = ({ surveyBlocks, onSubmit }) => {
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={(values) => {
-          const valuesToSubmit = { ...values, company: values.company.value };
+          const results = { ...values, company: values.company.value };
+          const { email, company, ...questionValues } = results;
+          const answers = [];
+          Object.keys(questionValues).forEach((id) => {
+            answers.push({
+              questionId: id,
+              resultRating: +questionValues[id],
+            });
+          });
+          const valuesToSubmit = { userId: email, company: company, surveyId: surveyId, answers: answers };
           console.log(valuesToSubmit);
           onSubmit(values.email);
         }}

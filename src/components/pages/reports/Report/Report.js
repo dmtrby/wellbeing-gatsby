@@ -17,7 +17,7 @@ const Report = () => {
 
   const [{ data: getData, loading: getLoading, error: getError }, loadData] = useAxios(
     {
-      url: 'https://reqres.in/api/register?delay=1',
+      url: 'https://reqres.in/api/register?delay=1', //  url: 'http://localhost:8102/report?surveyId=default&userId=defaultUser',
       method: 'GET'
     },
     { manual: true }
