@@ -14,7 +14,7 @@ const createPointsArray = (points) => {
 }
 
 const Question = ({ question }) => {
-  const { question: questionTitle, points, pointsLegend, name } = question;
+  const { question: questionTitle, points, pointsLegend, questionId } = question;
   const { width } = useContext(viewportContext);
 
   const radioLegends = useMemo(() => width > BREAKPOINTS.md && !pointsLegend ? true : false, [width, pointsLegend]);
@@ -32,7 +32,7 @@ const Question = ({ question }) => {
     <div className="margin-bottom-5">
       <div className="margin-bottom-3 colour-black">{questionTitle}</div>
       <div>
-        <RadioGroup name={name} points={points} radioLegends={radioLegends}></RadioGroup>
+        <RadioGroup questionId={questionId} points={points} radioLegends={radioLegends}></RadioGroup>
       </div>
       {legendArray && <div className="display-flex flex-justify-between margin-top-2">{legendArray.map((legend, index) => {
         return <QuestionLegend key={index}>{legend}</QuestionLegend>

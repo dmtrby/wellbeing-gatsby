@@ -18,14 +18,16 @@ const SurveyPage = () => {
         <meta name="description" content="Survey content page" />
       </Head>
       <Layout>
-        <div className="small">
-          <Link href="#" className="display-flex flex-align-center text-bold">
-            <IconComponent xlinkHref="left-arrow" colour="teal" />
-            <span className="margin-left-2">What Works Wellbeing</span>
-          </Link>
-        </div>
-        <div className="display-flex align-items-center flex-justify-center">
-          <DynamicSurvey />
+        <div className="row flex-column height-100-perc">
+          <div className="small">
+            <Link href="#" className="display-flex flex-align-center text-bold">
+              <IconComponent xlinkHref="left-arrow" colour="teal" />
+              <span className="margin-left-2">What Works Wellbeing</span>
+            </Link>
+          </div>
+          <div className="col display-flex align-items-center flex-justify-center">
+            <DynamicSurvey />
+          </div>
         </div>
       </Layout>
     </>
@@ -35,12 +37,12 @@ const SurveyPage = () => {
 SurveyPage.getInitialProps = ({ res, query: { surveyId } }) => {
   if (!surveyId) {
     res.writeHead(301, {
-      Location: '/404'
+      Location: '/404',
     });
     res.end();
   }
 
   return {};
-}
+};
 
 export default SurveyPage;

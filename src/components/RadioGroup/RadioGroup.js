@@ -15,7 +15,7 @@ const RadioButton = ({ name, children, checked, value }) => {
   )
 }
 
-const RadioGroup = ({ points, radioLegends, name }) => {
+const RadioGroup = ({ points, radioLegends, questionId }) => {
   const { values } = useFormikContext();
 
   return (
@@ -27,12 +27,12 @@ const RadioGroup = ({ points, radioLegends, name }) => {
           <div className={clsx(s.radiogroup_button, 'col', 'col-no-gutter')} key={index}>
             {radioLegends ?
               <div className={clsx('row', 'flex-column')}>
-                <RadioButton name={name} checked={value.toString() === values[name]} value={value}>{value}</RadioButton>
+                <RadioButton name={questionId} checked={value.toString() === values[questionId]} value={value}>{value}</RadioButton>
                 {legend && <QuestionLegend className="margin-top-2">{legend}</QuestionLegend>}
               </div>
               :
               <div className={clsx('row', 'flex-column')}>
-                <RadioButton name={name} checked={value.toString() === values[name]} value={value}>{value}</RadioButton>
+                <RadioButton name={questionId} checked={value.toString() === values[questionId]} value={value}>{value}</RadioButton>
               </div>}
           </div>
         )

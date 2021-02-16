@@ -17,17 +17,18 @@ const validateEmail = (value) => {
     error = 'Please enter a valid email';
   }
   return error;
-}
+};
 
 const QuestionsForm = ({ surveyBlocks, onSubmit, surveyId }) => {
   const questionValues = useMemo(() => findKeysInSurveyBlocks(surveyBlocks), [surveyBlocks]);
-  const initialValues = useMemo(() => ({ ...questionValues, email: '', company: '' }), [questionValues]);
+  const initialValues = useMemo(() => ({ ...questionValues, email: '', company: '' }), [
+    questionValues,
+  ]);
 
-  const mapRules = (map) => Object.keys(map).reduce((newMap, key) => ({ ...newMap, [key]: Yup.mixed().required() }), {});
+  const mapRules = (map) =>
+    Object.keys(map).reduce((newMap, key) => ({ ...newMap, [key]: Yup.mixed().required() }), {});
 
-  const schema = Yup.lazy(map => Yup.object(
-    mapRules(map, Yup.object({}))
-  ));
+  const schema = Yup.lazy((map) => Yup.object(mapRules(map, Yup.object({}))));
 
   const selectOptions = [
     { value: 'BT', label: 'BT' },
@@ -51,9 +52,13 @@ const QuestionsForm = ({ surveyBlocks, onSubmit, surveyId }) => {
               resultRating: +questionValues[id],
             });
           });
-          const valuesToSubmit = { userId: email, company: company, surveyId: surveyId, answers: answers };
-          console.log(valuesToSubmit);
-          onSubmit(values.email);
+          const valuesToSubmit = {
+            userId: email,
+            company: company,
+            surveyId: surveyId,
+            answers: answers,
+          };
+          onSubmit(valuesToSubmit);
         }}
       >
         {(props) => (
@@ -69,7 +74,7 @@ const QuestionsForm = ({ surveyBlocks, onSubmit, surveyId }) => {
                       </div>
                     ) : null}
                     {questions.map((question, questionIndex) => {
-                      return <Question question={question} key={questionIndex}/>;
+                      return <Question question={question} key={questionIndex} />;
                     })}
                   </div>
                   {surveyBlockIndex !== surveyBlocks.length - 1 && <HR />}
@@ -80,11 +85,18 @@ const QuestionsForm = ({ surveyBlocks, onSubmit, surveyId }) => {
               <p className="colour-black margin-bottom-3">Your details</p>
               <div className="row flex-justify-between">
                 <div className="col-xs-12 col-md-6 col-no-gutter">
-                  <EmailInput name="email" validate={validateEmail} isInvalid={props.errors.email && props.touched.email} error={props.errors.email} />
+                  <EmailInput
+                    name="email"
+                    validate={validateEmail}
+                    isInvalid={props.errors.email && props.touched.email}
+                    error={props.errors.email}
+                  />
                 </div>
                 <div className="col-xs-12 col-md-5 col-no-gutter margin-top-md-0 margin-top-4">
                   <div className="display-flex flex-column">
-                    <label htmlFor="select" className="small margin-bottom-1">Company *</label>
+                    <label htmlFor="select" className="small margin-bottom-1">
+                      Company *
+                    </label>
                     <Field
                       as={MySelect}
                       options={selectOptions}
@@ -100,7 +112,11 @@ const QuestionsForm = ({ surveyBlocks, onSubmit, surveyId }) => {
             <Button type="submit" variant="primary">
               Submit
             </Button>
-            {!props.isValid && <div className="xsmall colour-red margin-top-1"><span>Please make sure you have filled all inputs</span></div>}
+            {!props.isValid && (
+              <div className="xsmall colour-red margin-top-1">
+                <span>Please make sure you have filled all inputs</span>
+              </div>
+            )}
           </form>
         )}
       </Formik>

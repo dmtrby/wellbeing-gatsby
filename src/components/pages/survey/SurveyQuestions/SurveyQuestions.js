@@ -7,7 +7,6 @@ import SuccessModalComponent from 'components/SuccessModalComponent';
 import ErrorComponent from 'components/ErrorComponent';
 import ModalWindow from 'components/Base/ModalWindow';
 import QuestionsForm from 'components/QuestionsForm';
-import { surveyData } from 'src/mockedData';
 import { useModal } from 'src/hooks';
 import { LoadingOverlayContext } from 'src/contextProviders/LoadingOverlayProvider/LoadingOverlayProvider';
 import { COOKIE_NAMES } from 'src/constants';
@@ -16,63 +15,61 @@ const SurveyQuestions = () => {
   const router = useRouter();
   const [cookies, setCookie] = useCookies(COOKIE_NAMES.EMAIL);
   const emailCookie = cookies[COOKIE_NAMES.EMAIL];
-  const { query: { surveyId }, push } = router;
+  const {
+    query: { surveyId },
+    push,
+  } = router;
   const { setLoading } = useContext(LoadingOverlayContext);
-  const { data: { title, surveyBlocks }, successfull } = surveyData;
 
-  const [{ data, loading, error }, sendData] = useAxios(
+  const [{ data, loading: sendLoading, error }, sendData] = useAxios(
     {
-      url: 'https://reqres.in/api/users?page=2',
-      method: 'GET'
-      // url: 'http://localhost:8102/survey?surveyId=default&userId=defaultuser'
-      // method: 'POST'
+      url: 'http://127.0.01:8102/addSurvey',
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
     },
-    { manual: true }
+    { manual: true },
   );
 
-  const [{ data: getData, loading: getLoading, error: getError }, loadData] = useAxios(
-    {
-      url: 'https://reqres.in/api/register?delay=1',
-      method: 'GET'
-
-      // url: 'http://localhost:8102/addSurvey', // pridet succesfull true esli vse ok
-      // method: 'GET'
-    },
-    { manual: true }
-  );
-
-  useEffect(() => {
-    setLoading(true);
-    ems && emc();
-    const promise2 = loadData();
-    promise2.then((d) => {
-      getData = d;
-      setLoading(false);
-    }).catch(() => {
-      setLoading(false);
-    });
-  }, [surveyId])
-
+  const [{ data: getData, loading: getLoading, error: getError }] = useAxios({
+    url: `http://127.0.01:8102/survey?surveyId=${surveyId}${emailCookie ? 'userId=' + emailCookie : ''}`,
+    method: 'GET',
+  });
 
   const [sms, smo, smc] = useModal(!!data);
   const [ems, emo, emc] = useModal(!!error);
 
-  const handleSubmit = (email) => {
-    setLoading(true);
+  const handleSubmit = (sendDataObject) => {
     ems && emc();
-    const promise = sendData();
-    promise.then(() => {
+    const promise = sendData({ data: sendDataObject });
+    promise
+      .then(() => {
+        setCookie(COOKIE_NAMES.EMAIL, sendDataObject.userId);
+        smo();
+      })
+      .catch(() => {
+        emo();
+      });
+  };
+
+  useEffect(() => {
+    if (getLoading) {
+      setLoading(true);
+    } else if (sendLoading) {
+        setLoading(true);
+    } else {
       setLoading(false);
-      setCookie(COOKIE_NAMES.EMAIL, email);
-      smo();
-    }).catch(() => {
-      setLoading(false);
-      emo()
-    });
+    }
+    
+  }, [getLoading, sendLoading]);
+
+  if (getLoading) {
+    return <></>;
   }
 
-
-  if (getData && successfull) {
+  if (getData && getData.successful) {
+    const { data: { title, surveyBlocks } } = getData;
     return (
       <div>
         <div className="margin-top-3">
@@ -94,24 +91,20 @@ const SurveyQuestions = () => {
           />
         </ModalWindow>
       </div>
-    )
+    );
   }
 
-
-  if (getData && !successfull) {
+  if ((getData && !getData.successful) || getError) {
     return (
       <ErrorComponent
         title="Oops"
-        description="There was an error on server side."
+        description={getData.message}
         todo="Please try to reload the page."
       />
-    )
-
+    );
   }
 
-  return (
-    <div></div>
-  )
-}
+  return <div></div>;
+};
 
 export default SurveyQuestions;
