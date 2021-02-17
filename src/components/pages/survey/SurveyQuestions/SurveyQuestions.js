@@ -20,6 +20,7 @@ const SurveyQuestions = () => {
     push,
   } = router;
   const { setLoading } = useContext(LoadingOverlayContext);
+  const errorMessage = 'There was an error on server side.';
 
   const [{ data, loading: sendLoading, error }, sendData] = useAxios(
     {
@@ -33,7 +34,7 @@ const SurveyQuestions = () => {
   );
 
   const [{ data: getData, loading: getLoading, error: getError }] = useAxios({
-    url: `http://127.0.01:8102/survey?surveyId=${surveyId}${emailCookie ? 'userId=' + emailCookie : ''}`,
+    url: `http://127.0.01:8102/survey?surveyId=${surveyId}${emailCookie ? '&userId=' + emailCookie : ''}`,
     method: 'GET',
   });
 
@@ -44,9 +45,15 @@ const SurveyQuestions = () => {
     ems && emc();
     const promise = sendData({ data: sendDataObject });
     promise
-      .then(() => {
-        setCookie(COOKIE_NAMES.EMAIL, sendDataObject.userId);
-        smo();
+      .then((obj) => {
+        console.log(obj);
+        if (obj.data.successful) {
+          setCookie(COOKIE_NAMES.EMAIL, sendDataObject.userId);
+          smo();
+        } else {
+          emo();
+        }
+        
       })
       .catch(() => {
         emo();
@@ -78,7 +85,7 @@ const SurveyQuestions = () => {
         <div className="margin-top-4">
           <QuestionsForm surveyBlocks={surveyBlocks} onSubmit={handleSubmit} surveyId={surveyId} />
         </div>
-        <ModalWindow isOpen={sms} hideModal={smc}>
+        <ModalWindow isOpen={sms} hideModal={() => push(`/report?surveyId=${surveyId}`)}>
           <SuccessModalComponent surveyId={surveyId} />
         </ModalWindow>
         <ModalWindow isOpen={ems} hideModal={emc}>
@@ -86,7 +93,7 @@ const SurveyQuestions = () => {
             ctaClick={handleSubmit}
             ctaTitle="Re-submit"
             title="Oops"
-            description="There was an error on server side."
+            description="There was an error on server side or you have already filled this survey"
             todo="Please try to re-submit the survey."
           />
         </ModalWindow>

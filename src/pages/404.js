@@ -16,7 +16,7 @@ const NotFoundPage = () => {
       <Layout>
         <div className="row flex-column height-100-perc">
           <div className="small">
-            <Link href="#" className="display-flex flex-align-center text-bold">
+            <Link href="https://whatworkswellbeing.org/category/employee-snapshot-survey/" className="display-flex flex-align-center text-bold">
               <IconComponent xlinkHref="left-arrow" colour="teal" />
               <span className="margin-left-2">What Works Wellbeing</span>
             </Link>

@@ -27,7 +27,6 @@ const Question = ({ question }) => {
     }
   }
 
-
   return (
     <div className="margin-bottom-5">
       <div className="margin-bottom-3 colour-black">{questionTitle}</div>
