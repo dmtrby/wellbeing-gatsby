@@ -1,10 +1,13 @@
 {
   "compilerOptions": {
+    "target": "es5",
     "baseUrl": ".",
     "paths": {
       "src/*": ["src/*"],
       "components/*": ["src/components/*"],
-      "hooks": ["src/hooks"],
+      "hooks": ["src/hooks"]
     },
   },
+  "exclude": [".cache", ".next", "node_modules", "public"],
+  "include": ["**/*.js", "**/*.jsx"]
 }

@@ -1,0 +1,15 @@
+import React from 'react';
+import Select from 'react-select';
+
+const MySelect = ({ options, onBlur, onChange, value }) => (
+    <Select
+      options={options}
+      onBlur={onBlur}
+      onChange={onChange}
+      value={value}
+      className="select"
+      classNamePrefix="select"
+    />
+  );
+
+export default MySelect;

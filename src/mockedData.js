@@ -62,8 +62,7 @@ export const surveyData = {
           },
           {
             priority: 1,
-            question:
-              'Overall, to what extent do you feel that the things you do in your life are worthwhile?',
+            question: 'Overall, to what extent do you feel that the things you do in your life are worthwhile?',
             name: 'overall2',
             points: [
               {
@@ -258,8 +257,7 @@ export const surveyData = {
           },
           {
             priority: 1,
-            question:
-              'Overall, to what extent do you feel that the things you do in your life are worthwhile?',
+            question: 'Overall, to what extent do you feel that the things you do in your life are worthwhile?',
             name: 'overall6',
             points: [
               {
@@ -414,8 +412,7 @@ export const reportData = {
         },
       },
       {
-        questionText:
-          'Overall, to what extent do you feel that the things you do in your life are worthwhile?',
+        questionText: 'Overall, to what extent do you feel that the things you do in your life are worthwhile?',
         questionId: '6025385ac594ac135ad220b0',
         minRating: 0,
         maxRating: 10,

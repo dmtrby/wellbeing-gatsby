@@ -7,4 +7,4 @@ export const BREAKPOINTS = {
 
 export const COOKIE_NAMES = {
   EMAIL: 'eIdentify',
-}
+};

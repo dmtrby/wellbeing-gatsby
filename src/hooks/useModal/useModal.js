@@ -8,6 +8,6 @@ const useModal = (initialState) => {
   const closeModal = useCallback(() => setModal(false), []);
 
   return [show, openModal, closeModal];
-}
+};
 
 export default useModal;
